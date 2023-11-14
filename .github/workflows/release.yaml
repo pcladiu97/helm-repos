@@ -1,4 +1,4 @@
-name: release
+name: Helm package and push
 on: 
   push:
     branches:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Publish Helm charts
+      - name: Helm package and publish Helm charts
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
           token: ${{ secrets.CR_TOKEN }}
