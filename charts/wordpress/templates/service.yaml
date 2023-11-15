@@ -8,7 +8,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: wordpress
+    helm.sh/chart: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
   ports:
   {{- range .Values.service.ports }}
     - name: {{ .name }}
