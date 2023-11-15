@@ -1,14 +1,25 @@
 apiVersion: v1
 entries:
+  aspnet:
+  - apiVersion: v2
+    appVersion: 1.16.4
+    created: "2023-11-15T22:12:52.862600618Z"
+    description: A Helm chart for Kubernetes
+    digest: 7cf3ed8e3cc32f371867355721104b8ad6317fc0b494e347f21d93b79546cc98
+    name: aspnet
+    type: application
+    urls:
+    - https://pcladiu97.github.io/helm-repos/aspnet-0.1.0.tgz
+    version: 0.1.0
   wordpress:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-15T21:57:01.765174991Z"
+    created: "2023-11-15T22:12:52.863276298Z"
     description: A Helm chart for Kubernetes
-    digest: 466c4f1206ddf139e92e35bbe6ad74d1a42ca9b37e20be566d5eaf3a4b1560a2
+    digest: 67f02cdfb258ba3f582de178d031345dddcc8b9e892fbd9bf61fa1910770fe41
     name: wordpress
     type: application
     urls:
     - https://pcladiu97.github.io/helm-repos/wordpress-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-15T21:57:01.764164696Z"
+generated: "2023-11-15T22:12:52.861646356Z"
