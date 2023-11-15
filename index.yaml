@@ -3,12 +3,12 @@ entries:
   wordpress:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-14T18:01:24.706003656Z"
+    created: "2023-11-15T21:53:01.040459955Z"
     description: A Helm chart for Kubernetes
-    digest: f9064e0074992001bea5a7485ad3953680342188898c71ff3eb8638c71e97625
+    digest: d46b633af26bc8038b871b2a7307e9503ffbda6866ec0923d7537ac754aca2c8
     name: wordpress
     type: application
     urls:
     - https://pcladiu97.github.io/helm-repos/wordpress-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-14T18:01:24.705631909Z"
+generated: "2023-11-15T21:53:01.040090576Z"
