@@ -2,6 +2,9 @@ name: Helm package and push
 
 on: workflow_dispatch
 
+env:
+  environment: "null"
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -9,9 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Edit values files
+        env:
+          environment: "dev"
         run: |-
           pushd charts/aspnet
-          mv values-dev.yaml values.yaml
+          mv values-${{ env.environment }}.yaml values.yaml
           ls -al
           popd
       - name: Helm package and publish Helm charts
