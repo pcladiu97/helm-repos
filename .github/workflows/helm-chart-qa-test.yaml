@@ -18,10 +18,28 @@ env:
   ENVIRONMENT: "qa"
 
 jobs:
-  helm-chart-qa:
+  helm-chart-aspnet-qa:
     if: ${{ inputs.aspnet }}
     env:
       SERVICE_NAME: aspnet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Helm package
+        run: |-
+          ls -al
+          echo ${{ env.SERVICE_NAME }}
+          pushd charts/${{ env.SERVICE_NAME }} 
+          sed -i s/_CHART_NAME_/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
+          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+          ls -al
+          popd 
+          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+  helm-chart-wordpress-qa:
+    if: ${{ inputs.wordpress }}
+    env:
+      SERVICE_NAME: wordpress
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
