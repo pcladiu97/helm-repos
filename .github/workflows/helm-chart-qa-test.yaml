@@ -16,7 +16,6 @@ on:
 
 env:
   ENVIRONMENT: "qa"
-  REPO_URL: "https://pcladiu97.github.io/helm-repos/"
 
 jobs:
   helm-chart-aspnet-qa:
@@ -34,10 +33,12 @@ jobs:
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           popd 
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
-          helm plugin install https://github.com/chartmuseum/helm-push
-          helm repo add helm-repos ${{ env.REPO_URL }}
-          helm repo update
-          helm cm-push ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}*.tgz helm-repos
+          cd .. && mkdir TMP_FOLDER && cd TMP_FOLDER
+          mv helm-repos/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}-*.tgz .
+          git checkout gh-pages
+          mv ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}-*.tgz ../helm-repos
+          ls -al
+
   helm-chart-wordpress-qa:
     if: ${{ inputs.wordpress }}
     env:
