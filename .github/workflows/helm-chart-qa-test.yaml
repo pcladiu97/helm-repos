@@ -18,13 +18,19 @@ env:
   ENVIRONMENT: "qa"
 
 jobs:
-  helm-chart-aspnet-qa:
+  helm-chart-qa:
     runs-on: ubuntu-latest
-    env:
-      SERVICE_NAME: "aspnet"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set variables aspnet
+        if: ${{ github.event.inputs.aspnet == true }}
+        env:
+          SERVICE_NAME: "aspnet"
+      - name: Set variables wordpress
+        if: ${{ github.event.inputs.aspnet == true }}
+        env:
+          SERVICE_NAME: "wordpress"
       - name: Helm package
         run: |-
           ls -al
