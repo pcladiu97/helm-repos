@@ -1,0 +1,33 @@
+name: Helm package and push for QA
+
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: Select a chart to build and push
+        options:
+        - aspnet
+        - wordpress
+
+env:
+  environment: "qa"
+
+jobs:
+  make-chart-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Edit values files
+        run: |-
+          pushd charts/${{ inputs.choice }}
+          sed -i s/${{ inputs.choice }}/${{ inputs.choice }}-${{ env.environment }}/g Chart.yaml
+          mv values-${{ env.environment }}.yaml values.yaml
+          ls -al
+          popd 
+      - name: Helm package and publish Helm charts
+        uses: stefanprodan/helm-gh-pages@v1.4.1
+        with:
+          token: ${{ secrets.CR_TOKEN }}
+          charts_dir: charts/${{ inputs.choice }}
