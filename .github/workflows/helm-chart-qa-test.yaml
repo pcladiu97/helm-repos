@@ -27,10 +27,12 @@ jobs:
         if: ${{ github.event.inputs.aspnet == true }}
         env:
           SERVICE_NAME: "aspnet"
+        run: echo ${{ env.SERVICE_NAME }}
       - name: Set variables wordpress
         if: ${{ github.event.inputs.aspnet == true }}
         env:
           SERVICE_NAME: "wordpress"
+        run: echo ${{ env.SERVICE_NAME }}
       - name: Helm package
         run: |-
           ls -al
