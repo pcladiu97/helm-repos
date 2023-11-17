@@ -37,7 +37,7 @@ jobs:
           git clone https://github.com/pcladiu97/helm-repos.git
           cd helm-repos
           git checkout gh-pages
-          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          mv ../../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           ls -al
 
   helm-chart-wordpress-qa:
