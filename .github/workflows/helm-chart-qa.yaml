@@ -28,7 +28,7 @@ jobs:
       - name: Edit values files
         run: |-
           if [ "${{ github.event.inputs.aspnet }}" = "true" ]; then
-            find . -mindepth 1 ! -name "aspnet" -type d -exec rm -rf {} +
+            find . ! -name "aspnet" -type d -execdir rm -rf {} +
             ls -al
             echo ${{ env.SERVICE_NAME }}
             pushd charts/${{ env.SERVICE_NAME }} 
