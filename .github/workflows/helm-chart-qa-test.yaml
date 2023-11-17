@@ -16,6 +16,7 @@ on:
 
 env:
   ENVIRONMENT: "qa"
+  SERVICE_NAME: ""
 
 jobs:
   helm-chart-qa:
