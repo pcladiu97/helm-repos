@@ -24,12 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set variables aspnet
-        if: ${{ github.event.inputs.aspnet == true }}
+        if: ${{ inputs.aspnet }}
         env:
           SERVICE_NAME: "aspnet"
         run: echo ${{ env.SERVICE_NAME }}
       - name: Set variables wordpress
-        if: ${{ github.event.inputs.aspnet == true }}
+        if: ${{ inputs.wordpress }}
         env:
           SERVICE_NAME: "wordpress"
         run: echo ${{ env.SERVICE_NAME }}
