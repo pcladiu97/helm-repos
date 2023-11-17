@@ -39,7 +39,7 @@ jobs:
           git checkout gh-pages
           mv ../../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           helm repo index .
-          git config user.name "${{ env.GITHUB_ACTOR }}"
+          git config user.name  "Peter Claudiu"
           git config user.email "pclaudiu97@yahoo.com"
           git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for ${{ env.ENVIRONMENT }} environment." && git push
 
