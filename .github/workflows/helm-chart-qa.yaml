@@ -6,16 +6,20 @@ on:
       aspnet:
         type: boolean
         description: Check to build the helm chart for aspnet
+        required: false
+        default: "false"
       wordpress:
         type: boolean
         description: Check to build the helm chart for wordpress
+        required: false
+        default: "false"
 
 env:
   ENVIRONMENT: "qa"
 
 jobs:
   helm-chart-aspnet-qa:
-    if: ${{ github.event.inputs.aspnet }}
+    if: ${{ github.event.inputs.aspnet == "true" }}
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: "aspnet"
@@ -36,7 +40,7 @@ jobs:
           token: ${{ secrets.CR_TOKEN }}
           charts_dir: charts/${{ env.SERVICE_NAME }}
   helm-chart-wordpress-qa:
-    if: ${{ github.event.inputs.wordpress }}
+    if: ${{ github.event.inputs.wordpress == "true"}}
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: "wordpress"
