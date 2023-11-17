@@ -33,6 +33,7 @@ jobs:
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           popd 
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+          ls -al
           cd .. && mkdir TMP_FOLDER && cd TMP_FOLDER
           mv helm-repos/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           git checkout gh-pages
