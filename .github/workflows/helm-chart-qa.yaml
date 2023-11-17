@@ -28,7 +28,7 @@ jobs:
       - name: Edit values files
         run: |-
           if [ "${{ github.event.inputs.aspnet }}" = "true" ]; then
-            find . ! -name "aspnet" -type d -execdir rm -rf {} +
+            find . ! -name "aspnet" -type d -exec rm -rf {} +
             ls -al
             echo ${{ env.SERVICE_NAME }}
             pushd charts/${{ env.SERVICE_NAME }} 
@@ -42,25 +42,3 @@ jobs:
         with:
           token: ${{ secrets.CR_TOKEN }}
           charts_dir: charts/${{ env.SERVICE_NAME }}
-  helm-chart-wordpress-qa:
-    runs-on: ubuntu-latest
-    env:
-      SERVICE_NAME: "wordpress"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Edit values files
-        run: |-
-          if [ "${{ github.event.inputs.wordpress }}" = "true" ]; then
-            find . -mindepth 1 ! -name ${{ env.SERVICE_NAME }} -type d -exec rm -rf {} +
-            pushd charts/${{ env.SERVICE_NAME }} 
-            sed -i s/${{ env.SERVICE_NAME }}/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
-            mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
-            ls -al
-            popd 
-          fi
-      - name: Helm package and publish Helm charts
-        uses: stefanprodan/helm-gh-pages@v1.4.1
-        with:
-          token: ${{ secrets.CR_TOKEN }}
-          charts_dir: charts/${{ env.SERVICE_NAME }}  
