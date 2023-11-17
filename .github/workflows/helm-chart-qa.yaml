@@ -11,24 +11,46 @@ on:
         description: Check to build the helm chart for wordpress
 
 env:
-  environment: "qa"
+  ENVIRONMENT: "qa"
 
 jobs:
-  helm-chart-qa:
+  helm-chart-aspnet-qa:
+    if: ${{ github.event.inputs.aspnet == true }}
     runs-on: ubuntu-latest
+    env:
+      SERVICE_NAME: "aspnet"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
-          echo ${{ inputs.boolean }}
-          pushd charts/${{ inputs.boolean }} 
-          sed -i s/${{ inputs.boolean }} /${{ inputs.boolean }}-${{ env.environment }}/g Chart.yaml
-          mv values-${{ env.environment }}.yaml values.yaml
+          pushd charts/${{ env.SERVICE_NAME }} 
+          sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
+          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           ls -al
           popd 
       - name: Helm package and publish Helm charts
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
           token: ${{ secrets.CR_TOKEN }}
-          charts_dir: charts/${{ inputs.boolean }} 
+          charts_dir: charts/${{ env.SERVICE_NAME }}
+  helm-chart-wordpress-qa:
+    if: ${{ github.event.inputs.wordpress == true }}
+    runs-on: ubuntu-latest
+    env:
+      SERVICE_NAME: "wordpress"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Edit values files
+        run: |-
+          pushd charts/${{ env.SERVICE_NAME }} 
+          sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
+          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+          ls -al
+          popd 
+      - name: Helm package and publish Helm charts
+        uses: stefanprodan/helm-gh-pages@v1.4.1
+        with:
+          token: ${{ secrets.CR_TOKEN }}
+          charts_dir: charts/${{ env.SERVICE_NAME }}  
