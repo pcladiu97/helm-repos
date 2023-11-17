@@ -37,10 +37,9 @@ jobs:
           git clone https://github.com/pcladiu97/helm-repos.git
           cd helm-repos
           git checkout gh-pages
-          helm repo index ../.. --url https://pcladiu97.github.io/helm-repos/ --merge "index.yaml"
           mv ../../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          helm repo index .
           cat index.yaml
-          ls -al
 
   helm-chart-wordpress-qa:
     if: ${{ inputs.wordpress }}
