@@ -19,20 +19,13 @@ env:
 
 jobs:
   helm-chart-qa:
+    if: ${{ inputs.aspnet }}
+    env:
+      SERVICE_NAME: aspnet
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set variables aspnet
-        if: ${{ inputs.aspnet }}
-        run: |-
-          export SERVICE_NAME=aspnet
-          echo ${{ env.SERVICE_NAME }}
-      - name: Set variables wordpress
-        if: ${{ inputs.wordpress }}
-        run: |-
-          export SERVICE_NAME=wordpress
-          echo ${{ env.SERVICE_NAME }}
       - name: Helm package
         run: |-
           ls -al
