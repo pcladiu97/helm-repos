@@ -37,6 +37,7 @@ jobs:
           git clone https://github.com/pcladiu97/helm-repos.git
           cd helm-repos
           git checkout gh-pages
+          helm repo index --merge "../../index.yaml"
           mv ../../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           ls -al
 
