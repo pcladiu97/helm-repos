@@ -41,6 +41,7 @@ jobs:
           helm repo index .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git remote set-url origin https://github.com/pcladiu97/helm-repos.git
           git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for ${{ env.ENVIRONMENT }} environment." && git push
 
   helm-chart-wordpress-qa:
