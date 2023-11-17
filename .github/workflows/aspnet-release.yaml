@@ -1,13 +1,12 @@
 name: Helm package and push
 
-on: 
-  push:
-    branches:
-      - main
-    paths:
-      - 'charts/aspnet/**'
-  release:
-    types: [published, created]
+on:
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: "enter service"
+        default: ""
+        type: "string"
 
 jobs:
   make-chart-dev:
@@ -19,8 +18,8 @@ jobs:
         env:
           environment: "dev"
         run: |-
-          pushd charts/aspnet
-          sed -i s/aspnet/aspnet-${{ env.environment }}/g Chart.yaml
+          pushd charts/${{ inputs.service_name }}
+          sed -i s/${{ inputs.service_name }}/${{ inputs.service_name }}-${{ env.environment }}/g Chart.yaml
           mv values-${{ env.environment }}.yaml values.yaml
           ls -al
           popd
@@ -38,8 +37,8 @@ jobs:
         env:
           environment: "qa"
         run: |-
-          pushd charts/aspnet
-          sed -i s/aspnet/aspnet-${{ env.environment }}/g Chart.yaml
+          pushd charts/${{ inputs.service_name }}
+          sed -i s/${{ inputs.service_name }}/${{ inputs.service_name }}-${{ env.environment }}/g Chart.yaml
           mv values-${{ env.environment }}.yaml values.yaml
           ls -al
           popd
