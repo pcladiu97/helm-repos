@@ -19,7 +19,7 @@ env:
 
 jobs:
   helm-chart-aspnet-qa:
-    if: ${{ github.event.inputs.aspnet == "true" }}
+    if: ${{ github.event.inputs.aspnet == true || github.event.inputs.wordpress == true }}
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: "aspnet"
@@ -28,12 +28,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
-          find . ! -name ${{ env.SERVICE_NAME }} -type d -exec rm -rf {} +
-          pushd charts/${{ env.SERVICE_NAME }} 
-          sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
-          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
-          ls -al
-          popd 
+          if [ "${{ github.event.inputs.aspnet }}" = "true" ]; then
+            find . ! -name ${{ env.SERVICE_NAME }} -type d -exec rm -rf {} +
+            pushd charts/${{ env.SERVICE_NAME }} 
+            sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
+            mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+            ls -al
+            popd 
+          fi
       - name: Helm package and publish Helm charts
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
@@ -49,11 +51,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
-          pushd charts/${{ env.SERVICE_NAME }} 
-          sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
-          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
-          ls -al
-          popd 
+          if [ "${{ github.event.inputs.wordpress }}" = "true" ]; then
+            pushd charts/${{ env.SERVICE_NAME }} 
+            sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
+            mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+            ls -al
+            popd 
+          fi
       - name: Helm package and publish Helm charts
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
