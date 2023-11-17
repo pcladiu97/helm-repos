@@ -19,7 +19,6 @@ env:
 
 jobs:
   helm-chart-aspnet-qa:
-    if: ${{ github.event.inputs.aspnet == true || github.event.inputs.wordpress == true }}
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: "aspnet"
@@ -42,7 +41,6 @@ jobs:
           token: ${{ secrets.CR_TOKEN }}
           charts_dir: charts/${{ env.SERVICE_NAME }}
   helm-chart-wordpress-qa:
-    if: ${{ github.event.inputs.wordpress == "true"}}
     runs-on: ubuntu-latest
     env:
       SERVICE_NAME: "wordpress"
