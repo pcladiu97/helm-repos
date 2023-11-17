@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
+          find . ! -name ${{ env.SERVICE_NAME }} -type d -exec rm -rf {} +
           pushd charts/${{ env.SERVICE_NAME }} 
           sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
