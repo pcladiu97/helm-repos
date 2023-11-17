@@ -34,9 +34,10 @@ jobs:
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           popd 
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+          helm plugin install https://github.com/chartmuseum/helm-push
           helm repo add helm-repos ${{ env.REPO_URL }}
           helm repo update
-          helm push ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}*.tgz helm-repos
+          helm cm-push ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}*.tgz helm-repos
   helm-chart-wordpress-qa:
     if: ${{ inputs.wordpress }}
     env:
