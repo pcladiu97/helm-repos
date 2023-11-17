@@ -21,8 +21,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
+          echo ${{ inputs.boolean }}
           pushd charts/${{ inputs.boolean }} 
-          sed -i s/${{ inputs.boolean }} /${{ inputs.boolean }} -${{ env.environment }}/g Chart.yaml
+          sed -i s/${{ inputs.boolean }} /${{ inputs.boolean }}-${{ env.environment }}/g Chart.yaml
           mv values-${{ env.environment }}.yaml values.yaml
           ls -al
           popd 
