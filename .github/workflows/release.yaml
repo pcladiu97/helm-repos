@@ -1,12 +1,6 @@
 name: Helm package and push
-on: 
-  push:
-    branches:
-      - main
-    paths:
-      - 'charts/**'
-  release:
-    types: [published, created]
+
+on: workflow_dispatch
 
 jobs:
   release:
