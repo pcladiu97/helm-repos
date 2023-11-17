@@ -26,7 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Helm package and publish Helm charts
-        uses: stefanprodan/helm-gh-pages@v1.4.1
+        uses: WyriHaximus/github-action-helm3@v3
       - name: Helm package
         run: |-
           ls -al
