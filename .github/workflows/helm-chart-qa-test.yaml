@@ -33,10 +33,10 @@ jobs:
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           popd 
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
-          mkdir ../TMP_FOLDER
-          mv ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz ../TMP_FOLDER && mv index.yaml ../TMP_FOLDER
+          mkdir gh-pages && cd gh-pages
+          git clone https://github.com/pcladiu97/helm-repos.git
           git checkout gh-pages
-          mv ../TMP_FOLDER/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           ls -al
 
   helm-chart-wordpress-qa:
