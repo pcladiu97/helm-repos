@@ -41,22 +41,3 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for ${{ env.ENVIRONMENT }} environment." && git push
-
-  helm-chart-wordpress-qa:
-    if: ${{ inputs.wordpress }}
-    env:
-      SERVICE_NAME: wordpress
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Helm package
-        run: |-
-          pushd charts/${{ env.SERVICE_NAME }} 
-          sed -i s/_CHART_NAME_/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
-          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
-          popd 
-          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
-          helm repo add helm-repos ${{ env.REPO_URL }}
-          helm repo update
-          helm push ${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}*.tgz helm-repos
