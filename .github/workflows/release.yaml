@@ -11,6 +11,7 @@ jobs:
       - name: Edit values files
         run: |-
           pwd
+          ls -al
       - name: Helm package and publish Helm charts
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
