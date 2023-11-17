@@ -35,6 +35,7 @@ jobs:
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
           mkdir gh-pages && cd gh-pages
           git clone https://github.com/pcladiu97/helm-repos.git
+          cd helm-repos
           git checkout gh-pages
           mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           ls -al
