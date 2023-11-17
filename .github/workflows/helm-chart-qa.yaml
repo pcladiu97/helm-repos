@@ -28,7 +28,7 @@ jobs:
       - name: Edit values files
         run: |-
           if [ "${{ github.event.inputs.aspnet }}" = "true" ]; then
-            find . ! -name ${{ env.SERVICE_NAME }} -type d -exec rm -rf {} +
+            find . ! -name ${{ env.SERVICE_NAME }} -mindepth 1 -type d -exec rm -rf {} +
             pushd charts/${{ env.SERVICE_NAME }} 
             sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
             mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
@@ -50,8 +50,9 @@ jobs:
       - name: Edit values files
         run: |-
           if [ "${{ github.event.inputs.wordpress }}" = "true" ]; then
+            find . ! -name ${{ env.SERVICE_NAME }} -mindepth 1 -type d -exec rm -rf {} +
             pushd charts/${{ env.SERVICE_NAME }} 
-            sed -i s/${{ env.SERVICE_NAME }}  /${{ env.SERVICE_NAME }} -${{ env.ENVIRONMENT }}/g Chart.yaml
+            sed -i s/${{ env.SERVICE_NAME }}/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
             mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
             ls -al
             popd 
