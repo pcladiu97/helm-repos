@@ -34,7 +34,7 @@ jobs:
           popd 
           helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
           cd .. && mkdir TMP_FOLDER && cd TMP_FOLDER
-          mv helm-repos/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}-*.tgz .
+          mv helm-repos/${{ env.SERVICE_NAME }}_-${{ env.ENVIRONMENT }}-*.tgz .
           git checkout gh-pages
           mv ${{ env.SERVICE_NAME }}_-${{ env.ENVIRONMENT }}-*.tgz ../helm-repos
           ls -al
