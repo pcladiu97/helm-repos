@@ -3,26 +3,26 @@ name: Helm package and push for QA
 on:
   workflow_dispatch:
     inputs:
-      choice:
-        type: choice
-        description: Select a chart to build and push
-        options:
-        - aspnet
-        - wordpress
+      aspnet:
+        type: boolean
+        description: Check to build the helm chart for aspnet
+      wordpress:
+        type: boolean
+        description: Check to build the helm chart for wordpress
 
 env:
   environment: "qa"
 
 jobs:
-  make-chart-dev:
+  helm-chart-qa:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Edit values files
         run: |-
-          pushd charts/${{ inputs.choice }}
-          sed -i s/${{ inputs.choice }}/${{ inputs.choice }}-${{ env.environment }}/g Chart.yaml
+          pushd charts/${{ inputs.boolean }} 
+          sed -i s/${{ inputs.boolean }} /${{ inputs.boolean }} -${{ env.environment }}/g Chart.yaml
           mv values-${{ env.environment }}.yaml values.yaml
           ls -al
           popd 
@@ -30,4 +30,4 @@ jobs:
         uses: stefanprodan/helm-gh-pages@v1.4.1
         with:
           token: ${{ secrets.CR_TOKEN }}
-          charts_dir: charts/${{ inputs.choice }}
+          charts_dir: charts/${{ inputs.boolean }} 
