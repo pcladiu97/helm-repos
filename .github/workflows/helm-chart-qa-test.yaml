@@ -26,14 +26,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Set variables aspnet
         if: ${{ inputs.aspnet }}
-        env:
-          SERVICE_NAME: "aspnet"
-        run: echo ${{ env.SERVICE_NAME }}
+        run: |-
+          export SERVICE_NAME=aspnet
+          echo ${{ env.SERVICE_NAME }}
       - name: Set variables wordpress
         if: ${{ inputs.wordpress }}
-        env:
-          SERVICE_NAME: "wordpress"
-        run: echo ${{ env.SERVICE_NAME }}
+        run: |-
+          export SERVICE_NAME=wordpress
+          echo ${{ env.SERVICE_NAME }}
       - name: Helm package
         run: |-
           ls -al
