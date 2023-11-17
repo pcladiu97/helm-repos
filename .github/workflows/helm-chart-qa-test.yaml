@@ -39,7 +39,7 @@ jobs:
           git checkout gh-pages
           mv ../../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
           helm repo index .
-          cat index.yaml
+          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for ${{ env.ENVIRONMENT }} environment." && git push
 
   helm-chart-wordpress-qa:
     if: ${{ inputs.wordpress }}
