@@ -28,9 +28,8 @@ jobs:
       - name: Helm package
         run: |-
           ls -al
-          echo ${{ env.SERVICE_NAME }}
           pushd charts/${{ env.SERVICE_NAME }} 
-          sed -i s/${{ env.SERVICE_NAME }}/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
+          sed -i s/_CHART_NAME_/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           ls -al
           popd 
