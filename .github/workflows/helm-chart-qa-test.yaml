@@ -33,4 +33,4 @@ jobs:
           mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
           ls -al
           popd 
-          helm package ${{ env.SERVICE_NAME }}
+          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
