@@ -1,0 +1,70 @@
+name: Helm package and push for QA
+
+on:
+  workflow_dispatch:
+    inputs:
+      aspnet:
+        type: boolean
+        description: Check to build the helm chart for ASP.NET
+        required: false
+        default: "false"
+      wordpress:
+        type: boolean
+        description: Check to build the helm chart for wordpress
+        required: false
+        default: "false"
+
+env:
+  ENVIRONMENT: "qa"
+
+jobs:
+  helm-chart-aspnet-qa:
+    if: ${{ inputs.aspnet }}
+    env:
+      SERVICE_NAME: ASP.NET
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Helm package and push to helm repository
+        run: |-
+          pushd charts/${{ env.SERVICE_NAME }} 
+          sed -i s/_CHART_NAME_/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
+          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+          rm -rf values-*.yaml
+          ls -al
+          popd 
+          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+          git clone https://x-access-token:${{ secrets.CR_TOKEN }}@github.com/pcladiu97/helm-repos
+          cd helm-repos
+          git checkout gh-pages
+          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          helm repo index .
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for QA environment." && git push
+  helm-chart-wordpress-qa:
+    if: ${{ inputs.wordpress }}
+    env:
+      SERVICE_NAME: Wordpress
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Helm package and push to helm repository
+        run: |-
+          pushd charts/${{ env.SERVICE_NAME }} 
+          sed -i s/_CHART_NAME_/${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}/g Chart.yaml
+          mv values-${{ env.ENVIRONMENT }}.yaml values.yaml
+          rm -rf values-*.yaml
+          ls -al
+          popd 
+          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+          git clone https://x-access-token:${{ secrets.CR_TOKEN }}@github.com/pcladiu97/helm-repos
+          cd helm-repos
+          git checkout gh-pages
+          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          helm repo index .
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for QA environment." && git push
