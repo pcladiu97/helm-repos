@@ -1,16 +1,16 @@
-name: Helm package and push for DEV.
+name: Helm package and push for DEV
 
 on:
   workflow_dispatch:
     inputs:
       aspnet:
         type: boolean
-        description: Check to build the helm chart for ASP.NET
+        description: Check to build the helm chart for ASP.NET.
         required: false
         default: "false"
       wordpress:
         type: boolean
-        description: Check to build the helm chart for Wordpress
+        description: Check to build the helm chart for Wordpress.
         required: false
         default: "false"
 
