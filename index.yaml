@@ -3,7 +3,7 @@ entries:
   aspnet-dev:
   - apiVersion: v2
     appVersion: 1.16.5
-    created: "2023-11-19T17:16:10.678395691Z"
+    created: "2023-11-19T17:16:36.57968421Z"
     description: A Helm chart for Kubernetes
     digest: b60dbbd4c9e48f41a25920f60a272bae4716637171145ece2f2ffaa63c0f0067
     name: aspnet-dev
@@ -14,7 +14,7 @@ entries:
   wordpress-dev:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-19T17:16:10.678829989Z"
+    created: "2023-11-19T17:16:36.579900544Z"
     description: A Helm chart for Kubernetes
     digest: 7c9deb28053d96ce7cbe6c63bebdc0a95dcb6943b7f1e9540a1b8d0e5cdbcf72
     name: wordpress-dev
@@ -22,4 +22,15 @@ entries:
     urls:
     - wordpress-dev-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T17:16:10.677816021Z"
+  wordpress-qa:
+  - apiVersion: v2
+    appVersion: 1.16.4
+    created: "2023-11-19T17:16:36.580141694Z"
+    description: A Helm chart for Kubernetes
+    digest: df1ee4c4010a3dc3587d82b3d62496a7401797f7cffd00409e757c484422a6f3
+    name: wordpress-qa
+    type: application
+    urls:
+    - wordpress-qa-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-11-19T17:16:36.579329699Z"
