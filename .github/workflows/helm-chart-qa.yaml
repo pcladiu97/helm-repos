@@ -1,4 +1,4 @@
-name: Helm package and push for QA
+name: Helm package and push for QA.
 
 on:
   workflow_dispatch:

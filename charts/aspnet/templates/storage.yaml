@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: gce-provision
+  name: {{ .Chart.name }}
 provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-standard
@@ -10,8 +10,8 @@ reclaimPolicy: Retain
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: wordpress-pvc
-  namespace: wp
+  name: {{ .Chart.name }}-pvc
+  namespace: aspnet
 spec:
   accessModes:
     - ReadWriteOnce

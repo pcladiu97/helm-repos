@@ -1,4 +1,4 @@
-name: Helm package and push for dev
+name: Helm package and push for DEV.
 
 on:
   workflow_dispatch:
@@ -41,7 +41,7 @@ jobs:
           helm repo index .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for dev environment." && git push
+          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for DEV environment." && git push
   helm-chart-wordpress-dev:
     if: ${{ inputs.wordpress }}
     env:
@@ -65,4 +65,4 @@ jobs:
           helm repo index .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for dev environment." && git push
+          git add . && git commit -am "Helm chart for ${{ env.SERVICE_NAME }} service was updated for DEV environment." && git push
