@@ -10,7 +10,7 @@ on:
         default: "false"
       wordpress:
         type: boolean
-        description: Check to build the helm chart for wordpress
+        description: Check to build the helm chart for Wordpress
         required: false
         default: "false"
 
@@ -21,7 +21,7 @@ jobs:
   helm-chart-aspnet-qa:
     if: ${{ inputs.aspnet }}
     env:
-      SERVICE_NAME: ASP.NET
+      SERVICE_NAME: aspnet
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
