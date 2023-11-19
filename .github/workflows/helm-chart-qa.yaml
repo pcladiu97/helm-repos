@@ -38,7 +38,7 @@ jobs:
           git clone https://x-access-token:${{ secrets.CR_TOKEN }}@github.com/pcladiu97/helm-repos
           cd helm-repos
           git checkout gh-pages
-          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}-*.tgz .
           helm repo index .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -63,7 +63,7 @@ jobs:
           git clone https://x-access-token:${{ secrets.CR_TOKEN }}@github.com/pcladiu97/helm-repos
           cd helm-repos
           git checkout gh-pages
-          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}_-*.tgz .
+          mv ../${{ env.SERVICE_NAME }}-${{ env.ENVIRONMENT }}-*.tgz .
           helm repo index .
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
