@@ -20,7 +20,7 @@ envFromSecrets:
 volumes:
   - name: aspnet-content
     persistentVolumeClaim:
-      claimName: wordpress-pvc
+      claimName: aspnet-pvc
 
 service:
   type: LoadBalancer

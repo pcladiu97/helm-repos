@@ -17,14 +17,10 @@ envFromSecrets:
     WORDPRESS_DB_USER: db_username
     WORDPRESS_DB_PASSWORD: db_password
 
-volumeMounts:
-  - name: wordpress-content
-    mountPath: /var/www/html/wp-content
-
 volumes:
-  - name: wordpress-content
+  - name: aspnet-content
     persistentVolumeClaim:
-      claimName: wordpress-pvc
+      claimName: aspnet-pvc
 
 service:
   type: LoadBalancer
