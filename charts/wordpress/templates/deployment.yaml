@@ -13,6 +13,8 @@ spec:
       labels:
         helm.sh/chart: {{ .Chart.Name }}
         app.kubernetes.io/managed-by: {{ .Release.Service }}
+      annotations:
+        timestamp: "{{ date "20060102150405" .Release.Time }}"
   template:
     metadata:
       labels:
