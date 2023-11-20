@@ -13,14 +13,10 @@ resources:
     memory: 200Mi
     cpu: 100m
 
-volumeMounts:
-  - name: wordpress-content
-    mountPath: /var/www/html/wp-content
-
 volumes:
-  - name: wordpress-content
+  - name: aspnet-content
     persistentVolumeClaim:
-      claimName: wordpress-pvc
+      claimName: aspnet-pvc
 
 service:
   type: LoadBalancer
