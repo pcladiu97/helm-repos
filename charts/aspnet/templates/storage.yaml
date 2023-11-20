@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: gce-provision
+  name: aspnet-provision
 provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-standard
@@ -18,4 +18,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: "gce-provision"
+  storageClassName: "aspnet-provision"

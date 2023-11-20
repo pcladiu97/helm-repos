@@ -5,11 +5,6 @@ stage: dev
 image:
   repository: europe-west1-docker.pkg.dev/wp-project-manage/wp-project-infra-registry/wp-image
 
-ports:
-  containerPort: 9000
-
-env:
-
 envFromSecrets:
   mysql:
     WORDPRESS_DB_HOST: db_host
@@ -28,6 +23,7 @@ volumes:
 
 service:
   type: LoadBalancer
+  loadBalancerIP: 34.22.250.29
   ports:
     - name: http
       port: 80
