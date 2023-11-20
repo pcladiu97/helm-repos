@@ -18,7 +18,8 @@ spec:
   template:
     metadata:
       labels:
-      {{- include "labels" . | nindent 4 }}
+        helm.sh/chart: {{ .Chart.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
     spec:
       imagePullSecrets:
       - name: registry-sa
@@ -26,6 +27,13 @@ spec:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}:{{ .Values.stage }}
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
           env:
           {{- range $secretName, $secretData := .Values.envFromSecrets }}
           {{- range $secretEnvName, $secretEnvValue := $secretData }}

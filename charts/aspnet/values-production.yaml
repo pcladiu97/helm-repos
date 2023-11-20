@@ -5,6 +5,14 @@ stage: production
 image:
   repository: europe-west1-docker.pkg.dev/wp-project-manage/aspnet-project-infra-registry/aspnet-image
 
+resources:
+  requests:
+    memory: 500Mi
+    cpu: 200m
+  limits:
+    memory: 1Gi
+    cpu: 500m
+
 volumeMounts:
   - name: wordpress-content
     mountPath: /var/www/html/wp-content

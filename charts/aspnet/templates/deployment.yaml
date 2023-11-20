@@ -22,5 +22,12 @@ spec:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}:{{ .Values.stage }}
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
           volumeMounts: {{ toYaml .Values.volumeMounts | default "" | nindent 12 }}
       volumes: {{ toYaml .Values.volumes | default "" | nindent 6 }}
