@@ -3,7 +3,7 @@ entries:
   aspnet-dev:
   - apiVersion: v2
     appVersion: 1.16.5
-    created: "2023-11-20T18:49:52.524818452Z"
+    created: "2023-11-20T18:49:54.869560821Z"
     description: A Helm chart for Kubernetes
     digest: 2039ffb65f7c350c2200df7e8ef2e1dab7fb70f8d21a3d4e31925af8bbf303cb
     name: aspnet-dev
@@ -14,7 +14,7 @@ entries:
   aspnet-production:
   - apiVersion: v2
     appVersion: 1.16.5
-    created: "2023-11-20T18:49:52.525058408Z"
+    created: "2023-11-20T18:49:54.86979626Z"
     description: A Helm chart for Kubernetes
     digest: 6e0285498435e10c553445e6b2e92710088a3280af4b6111eca61bb5a144027f
     name: aspnet-production
@@ -25,7 +25,7 @@ entries:
   aspnet-qa:
   - apiVersion: v2
     appVersion: 1.16.5
-    created: "2023-11-20T18:49:52.525262818Z"
+    created: "2023-11-20T18:49:54.869995051Z"
     description: A Helm chart for Kubernetes
     digest: 64828285d92875074549fc772daa49768bf7a3c0dbf083882e8f8787db9dadac
     name: aspnet-qa
@@ -36,9 +36,9 @@ entries:
   wordpress-dev:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-20T18:49:52.525496722Z"
+    created: "2023-11-20T18:49:54.870216745Z"
     description: A Helm chart for Kubernetes
-    digest: 348e8c89745be9e949d5f665f1dc46bd0cad92da3a7101049155bbae04987454
+    digest: aa7d553ae7ecf20a2752fbc01341c09a16308e8fd47d567e1e810f977dfc495d
     name: wordpress-dev
     type: application
     urls:
@@ -47,7 +47,7 @@ entries:
   wordpress-production:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-20T18:49:52.525800977Z"
+    created: "2023-11-20T18:49:54.870438088Z"
     description: A Helm chart for Kubernetes
     digest: bd0491d0a5ed7389cca6b9357268544bc77b94c7518b0a39039c6a1594708633
     name: wordpress-production
@@ -58,7 +58,7 @@ entries:
   wordpress-qa:
   - apiVersion: v2
     appVersion: 1.16.4
-    created: "2023-11-20T18:49:52.526072782Z"
+    created: "2023-11-20T18:49:54.870647038Z"
     description: A Helm chart for Kubernetes
     digest: 060f640ceecea2378917214a84374d8f5dda78b4ee456648b4f402eaff932bfb
     name: wordpress-qa
@@ -66,4 +66,4 @@ entries:
     urls:
     - wordpress-qa-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-20T18:49:52.524464244Z"
+generated: "2023-11-20T18:49:54.869193727Z"
