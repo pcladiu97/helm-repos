@@ -12,7 +12,13 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}
+      annotations:
+        timestamp: "{{ date "20060102150405" .Release.Time }}"
     spec:
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}
