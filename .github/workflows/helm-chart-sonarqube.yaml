@@ -1,0 +1,27 @@
+name: Helm package and push for SonarQube
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+    - 'charts/sonarqube/**'
+
+jobs:
+  helm-chart-sonarqube:
+    env:
+      SERVICE_NAME: sonarqube
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Helm package and push to helm repository
+        run: |-
+          helm package charts/${{ env.SERVICE_NAME }} && helm repo index .
+          git clone https://x-access-token:${{ secrets.CR_TOKEN }}@github.com/pcladiu97/helm-repos
+          cd helm-repos
+          git checkout gh-pages && git pull
+          mv ../${{ env.SERVICE_NAME }-*.tgz .
+          helm repo index .
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add . && git commit -am "Helm chart for SonarQube was updated." && git push
