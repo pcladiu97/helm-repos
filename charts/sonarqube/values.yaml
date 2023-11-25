@@ -33,6 +33,8 @@ image:
   # pullSecrets:
   #   - name: my-repo-secret
 
+fullnameOverride: "sonarqube"
+
 # Set security context for sonarqube pod
 securityContext:
   fsGroup: 1000
