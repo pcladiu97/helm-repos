@@ -5,7 +5,6 @@ This repository is a collection of Helm charts made from a chart for a Wordpress
 ## Table of Contents
 
   - [Helm chart repository](#Helm-chart-repository)
-  - [Description](#description)
   - [Usage / Description](#usage-/-description)
   - [Folder Structure](#folder-structure)
 
