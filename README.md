@@ -22,7 +22,7 @@ The charts for `aspnet` and `wordpress` will have three diferent values.yaml fil
 
 Depending on which stage do you want to deploy your application, that respective values.yaml file will be used. (Ex.: Deploying ASP.NET on QA, for this, `values-qa.yaml` will be used)
 
-The chart named `sonarqube` is the oficial one from the following link: https://github.com/SonarSource/helm-chart-sonarqube/tree/master/charts/sonarqube
+The chart named `sonarqube` is the oficial one from the [here](https://github.com/SonarSource/helm-chart-sonarqube/tree/master/charts/sonarqube)
 
 After the needed values.yaml file was edited with our desired configuration and pushed to the repository, we can move over to creating the package and pushing it to the helm repository, which is stored in this repository but on `gh-pages` branch.
 
